@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="570" viewBox="0 0 960 570" role="img" aria-labelledby="title desc">
+<title id="title">From magnet orientation to absolute angle</title>
+<desc id="desc">Four synchronized steps show a diametric magnet turning clockwise: 0 degrees is 0 counts, 90 degrees is 4096, 180 degrees is 8192, and 270 degrees is 12288. The next full turn wraps the single-turn reading to zero. Software must observe motion to count turns. The drawing uses an illustrative reference and direction.</desc>
+<style>
+text{font-family:system-ui,-apple-system,Segoe UI,sans-serif;fill:#e5edf5} .muted{fill:#a9bfd1;font-size:15px} .label{font-size:17px;font-weight:600} .value{font-size:45px;font-weight:700;font-variant-numeric:tabular-nums} .frame{opacity:0;animation-duration:12s;animation-iteration-count:infinite;animation-timing-function:steps(1,end)} .f0{opacity:1;animation-name:q0}.f1{animation-name:q1}.f2{animation-name:q2}.f3{animation-name:q3}
+@keyframes q0{0%{opacity:1}25%,100%{opacity:0}}
+@keyframes q1{0%{opacity:0}25%{opacity:1}50%,100%{opacity:0}}
+@keyframes q2{0%{opacity:0}50%{opacity:1}75%,100%{opacity:0}}
+@keyframes q3{0%{opacity:0}75%{opacity:1}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.frame{animation:none}.f0{opacity:1}.f1,.f2,.f3{opacity:0}}
+</style>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 8 4 0 8Z" fill="#70e1b2"/></marker></defs>
+<rect width="960" height="570" rx="18" fill="#0d2238"/>
+<text x="32" y="43" font-size="25" font-weight="700">One turn. 16,384 distinct positions.</text>
+<text x="32" y="72" class="muted">A rotating magnetic field becomes a number you can read over SPI.</text>
+<path d="M312 239H362" fill="none" stroke="#70e1b2" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M606 239H656" fill="none" stroke="#70e1b2" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="32" y="103" width="280" height="287" rx="12" fill="#142f47"/>
+<rect x="374" y="103" width="232" height="287" rx="12" fill="#142f47"/>
+<rect x="668" y="103" width="260" height="287" rx="12" fill="#142f47"/>
+<text x="56" y="137" class="label">01 / Shaft + magnet</text>
+<text x="398" y="137" class="label">02 / 14-bit count</text>
+<text x="692" y="137" class="label">03 / Angle</text>
+<circle cx="172" cy="249" r="78" fill="none" stroke="#58758d" stroke-width="2"/>
+<path d="M172 164V179M242 249H257M172 319V334M87 249H102" stroke="#a9bfd1" fill="none"/>
+<text x="172" y="161" text-anchor="middle" font-size="14">0°</text>
+<text x="270" y="254" text-anchor="middle" font-size="14">90°</text>
+<text x="172" y="353" text-anchor="middle" font-size="14">180°</text>
+<text x="72" y="254" text-anchor="middle" font-size="14">270°</text>
+<g class="frame f0">
+<g transform="rotate(0 172 249)"><path d="M118 249A54 54 0 0 1 226 249Z" fill="#70e1b2"/><path d="M118 249A54 54 0 0 0 226 249Z" fill="#f2bd68"/><text x="172" y="233" text-anchor="middle" style="fill:#0d2238;font-size:20px;font-weight:700">N</text><text x="172" y="281" text-anchor="middle" style="fill:#0d2238;font-size:20px;font-weight:700">S</text><path d="M172 199V187" stroke="#e5edf5" stroke-width="3" fill="none"/><path d="M172 180 166 192 178 192Z" fill="#e5edf5"/><circle cx="172" cy="249" r="7" fill="#0d2238"/></g>
+<text x="490" y="249" text-anchor="middle" class="value">0</text>
+<text x="798" y="249" text-anchor="middle" class="value">0°</text>
+</g>
+<g class="frame f1">
+<g transform="rotate(90 172 249)"><path d="M118 249A54 54 0 0 1 226 249Z" fill="#70e1b2"/><path d="M118 249A54 54 0 0 0 226 249Z" fill="#f2bd68"/><text x="172" y="233" text-anchor="middle" style="fill:#0d2238;font-size:20px;font-weight:700">N</text><text x="172" y="281" text-anchor="middle" style="fill:#0d2238;font-size:20px;font-weight:700">S</text><path d="M172 199V187" stroke="#e5edf5" stroke-width="3" fill="none"/><path d="M172 180 166 192 178 192Z" fill="#e5edf5"/><circle cx="172" cy="249" r="7" fill="#0d2238"/></g>
+<text x="490" y="249" text-anchor="middle" class="value">4,096</text>
+<text x="798" y="249" text-anchor="middle" class="value">90°</text>
+</g>
+<g class="frame f2">
+<g transform="rotate(180 172 249)"><path d="M118 249A54 54 0 0 1 226 249Z" fill="#70e1b2"/><path d="M118 249A54 54 0 0 0 226 249Z" fill="#f2bd68"/><text x="172" y="233" text-anchor="middle" style="fill:#0d2238;font-size:20px;font-weight:700">N</text><text x="172" y="281" text-anchor="middle" style="fill:#0d2238;font-size:20px;font-weight:700">S</text><path d="M172 199V187" stroke="#e5edf5" stroke-width="3" fill="none"/><path d="M172 180 166 192 178 192Z" fill="#e5edf5"/><circle cx="172" cy="249" r="7" fill="#0d2238"/></g>
+<text x="490" y="249" text-anchor="middle" class="value">8,192</text>
+<text x="798" y="249" text-anchor="middle" class="value">180°</text>
+</g>
+<g class="frame f3">
+<g transform="rotate(270 172 249)"><path d="M118 249A54 54 0 0 1 226 249Z" fill="#70e1b2"/><path d="M118 249A54 54 0 0 0 226 249Z" fill="#f2bd68"/><text x="172" y="233" text-anchor="middle" style="fill:#0d2238;font-size:20px;font-weight:700">N</text><text x="172" y="281" text-anchor="middle" style="fill:#0d2238;font-size:20px;font-weight:700">S</text><path d="M172 199V187" stroke="#e5edf5" stroke-width="3" fill="none"/><path d="M172 180 166 192 178 192Z" fill="#e5edf5"/><circle cx="172" cy="249" r="7" fill="#0d2238"/></g>
+<text x="490" y="249" text-anchor="middle" class="value">12,288</text>
+<text x="798" y="249" text-anchor="middle" class="value">270°</text>
+</g>
+<text x="490" y="282" text-anchor="middle" class="muted">range: 0–16,383</text>
+<text x="490" y="352" text-anchor="middle" class="muted">AS5047P → SPI</text>
+<text x="798" y="282" text-anchor="middle" class="muted">count × 360 / 16,384</text>
+<text x="798" y="352" text-anchor="middle" class="muted">1 count ≈ 0.022°</text>
+<rect x="32" y="410" width="896" height="91" rx="10" fill="#1c3a50"/>
+<text x="56" y="440" font-size="18" font-weight="600">At the boundary: 16,383 → 0 counts</text>
+<text x="56" y="468" class="muted">16,384 counts of travel = 360° = one turn; 16,384 is never an output count.</text>
+<text x="32" y="531" class="muted">Single-turn hardware repeats. Software turn history needs continuous sampling and power.</text>
+<text x="32" y="553" font-size="13" fill="#a9bfd1">Illustrative zero and clockwise direction; actual reference depends on mounting and configuration.</text>
+</svg>

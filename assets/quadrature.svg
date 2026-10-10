@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" height="420" role="img" aria-labelledby="title desc">
+  <title id="title">One cycle. Four counts.</title>
+  <desc id="desc">A leads B by a quarter cycle. A rising, B rising, A falling and B falling each add one count in the illustrated direction. 2048 cycles per revolution gives 8192 counts. X is a separate index pulse once per revolution, not once per cycle.</desc>
+  <rect width="800" height="420" rx="16" fill="#0d2238"/>
+  <g font-family="system-ui, -apple-system, Segoe UI, sans-serif">
+    <text x="32" y="42" fill="#ffffff" font-size="25" font-weight="700">One cycle. Four counts.</text>
+    <text x="32" y="68" fill="#b6cbdc" font-size="14">AMT102-V · A/B quadrature → ESP32 PCNT → position</text>
+    <rect x="150" y="100" width="360" height="196" rx="8" fill="#183b51"/>
+    <g stroke="#7696aa" stroke-dasharray="4 5" opacity="0.65">
+      <path d="M150 106V284 M240 106V284 M330 106V284 M420 106V284" fill="none"/>
+    </g>
+    <text x="48" y="145" fill="#70e1b2" font-size="20" font-weight="700">A</text>
+    <text x="48" y="213" fill="#82c9ff" font-size="20" font-weight="700">B</text>
+    <path d="M110 160H150V120H330V160H510V120H690V160H740" fill="none" stroke="#70e1b2" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M110 228H240V188H420V228H600V188H740" fill="none" stroke="#82c9ff" stroke-width="3" stroke-linejoin="round"/>
+    <g fill="#f2bd68" text-anchor="middle" font-size="15" font-weight="700">
+      <circle cx="150" cy="160" r="5"/><circle cx="240" cy="228" r="5"/>
+      <circle cx="330" cy="120" r="5"/><circle cx="420" cy="188" r="5"/>
+      <text x="150" y="270">+1</text><text x="240" y="270">+1</text>
+      <text x="330" y="270">+1</text><text x="420" y="270">+1</text>
+    </g>
+    <path d="M150 302V310H510V302" fill="none" stroke="#b6cbdc" stroke-width="1.5"/>
+    <text x="330" y="334" text-anchor="middle" fill="#ffffff" font-size="14">1 A/B cycle = 4 counts</text>
+    <text x="552" y="265" fill="#b6cbdc" font-size="14">A leads B →</text>
+    <text x="552" y="287" fill="#b6cbdc" font-size="13">Reverse order: count down</text>
+    <path d="M32 355H768" fill="none" stroke="#355469"/>
+    <text x="32" y="382" fill="#f2bd68" font-size="15" font-weight="600">2048 PPR × 4 = 8192 counts / turn</text>
+    <text x="32" y="404" fill="#b6cbdc" font-size="13">X: separate index pulse, once per revolution. Timing above shows A/B only.</text>
+  </g>
+</svg>
