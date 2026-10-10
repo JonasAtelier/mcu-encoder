@@ -1,0 +1,22 @@
+# ESP-IDF builds of examples/esp/
+build/
+sdkconfig
+sdkconfig.old
+managed_components/
+dependencies.lock
+docs/*.pdf
+test/test_as5047p_math
+test/test_amt102_math
+test/esp/test_core
+test/esp/test_as5047p
+test/esp/test_as5600
+test/esp/test_amt102
+test/esp/test_port_esp
+test/esp/test_core_shared
+test/esp/test_as5047p_shared
+test/esp/test_as5600_shared
+test/stm/test_core
+test/stm/test_as5047p
+test/stm/test_as5600
+test/stm/test_amt102
+test/stm/test_port_stm

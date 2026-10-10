@@ -1,0 +1,45 @@
+# Read by ESP-IDF as a component Kconfig, and by both forges' `make menu`
+# (scripts/menu.py) for the ENCODER_<CHIP> prompts. stm-forge has no Kconfig
+# build step: its build only sees the defconfig lines, as
+# -DCONFIG_ENCODER_<CHIP>=1 or 0. Every chip is off unless set.
+menuconfig ENCODER
+    bool "Encoder subsystem"
+    default y
+    help
+        The encoder core: struct encoder_dev, encoder_read(),
+        encoder_set_zero() and the encoder_* log helpers. Pick the chip
+        drivers you need below; none is built by default, so a chip missing
+        from sdkconfig is off.
+
+if ENCODER
+
+    config ENCODER_AS5047P
+        bool "ams AS5047P (SPI, 14-bit absolute)"
+        default n
+        help
+            Build the AS5047P driver: as5047p_probe() and friends.
+
+    config ENCODER_AS5600
+        bool "ams AS5600 (I2C, 12-bit absolute)"
+        default n
+        help
+            Build the AS5600 driver: as5600_probe() and friends.
+
+    config ENCODER_AMT102
+        bool "CUI AMT102-V (quadrature via PCNT, incremental)"
+        default n
+        depends on SOC_PCNT_SUPPORTED
+        help
+            Build the AMT102-V driver: amt102_probe() and friends. Needs a
+            chip with the PCNT peripheral. On the STM32 HAL it counts on a
+            timer the app has set up in encoder mode, and needs the TIM
+            module.
+
+    config ENCODER_DEBUG
+        bool "encoder_dbg() lines"
+        default n
+        help
+            STM32 HAL only: compile encoder_dbg() lines in. On ESP-IDF
+            encoder_dbg() is ESP_LOGD and the log level decides.
+
+endif # ENCODER
