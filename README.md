@@ -23,7 +23,8 @@ names the ESP-IDF component directory `encoder` as well.
 > **Hardware unverified.** Host tests use simulated devices and platform stubs.
 > Nothing here has run on a physical chip.
 
-[Supported hardware](#supported-hardware) · [Install](#install) ·
+[Supported hardware](#supported-hardware) · [Drivers](#drivers) ·
+[Install](#install) ·
 [Quick start](#quick-start) · [Examples](#examples) ·
 [Documentation](#documentation) · [Tests](#tests)
 
@@ -33,11 +34,49 @@ All three drivers support both platforms. Enable only the drivers you need.
 
 | Chip | Interface | Notes |
 |---|---|---|
-| **AS5047P** | SPI, mode 1 | 14-bit absolute magnetic, 16384 counts per turn; built for motors |
-| **AS5600** | I2C, 0x36 | 12-bit absolute magnetic, 4096 counts per turn; one per bus |
-| **AMT102-V** | quadrature A/B/X | incremental capacitive, 48–2048 PPR by DIP switch; PCNT on ESP-IDF, a timer in encoder mode on STM32 |
+| **AS5047P** | SPI | ams magnetic angle sensor |
+| **AS5600** | I2C | ams magnetic angle sensor |
+| **AMT102-V** | quadrature A/B/X | CUI Devices capacitive encoder |
 
 Wiring for every chip is in the [wiring guide](docs/hardware.md).
+
+## Drivers
+
+<details><summary><b>AS5047P</b> — SPI</summary>
+
+14-bit absolute magnetic, 16384 counts per turn; built for motors.
+
+- Interface: SPI, mode 1
+- Examples: ESP-IDF [as5047p](examples/esp/as5047p/) · STM32 HAL
+  [as5047p](examples/stm/as5047p/main.c)
+- Chip reference: [AS5047P](docs/chips.md#as5047p)
+
+</details>
+
+<details><summary><b>AS5600</b> — I2C</summary>
+
+12-bit absolute magnetic, 4096 counts per turn; one per bus.
+
+- Interface: I2C, 0x36
+- Examples: ESP-IDF [as5600](examples/esp/as5600/) · STM32 HAL
+  [as5600](examples/stm/as5600/main.c)
+- Chip reference: [AS5600](docs/chips.md#as5600)
+
+</details>
+
+<details><summary><b>AMT102-V</b> — quadrature A/B/X</summary>
+
+Incremental capacitive, 48–2048 PPR by DIP switch; PCNT on ESP-IDF, a timer in
+encoder mode on STM32.
+
+- Examples: ESP-IDF [amt102](examples/esp/amt102/) · STM32 HAL
+  [amt102](examples/stm/amt102/main.c)
+- **AMT102 on STM32:** the library starts, reads and stops the app's timer;
+  pins, encoder mode and input filter are the app's. The index needs the
+  app's EXTI callback to call `amt102_index_irq()`.
+- Chip reference: [AMT102-V](docs/chips.md#amt102-v)
+
+</details>
 
 ## Install
 
@@ -141,11 +180,7 @@ turns, timestamps, logging, and error codes.
 
 ## Examples
 
-| Sensor | ESP-IDF | STM32 HAL |
-|---|---|---|
-| AS5047P | [as5047p](examples/esp/as5047p/) | [as5047p](examples/stm/as5047p/main.c) |
-| AS5600 | [as5600](examples/esp/as5600/) | [as5600](examples/stm/as5600/main.c) |
-| AMT102-V | [amt102](examples/esp/amt102/) | [amt102](examples/stm/amt102/main.c) |
+Each driver's examples are listed under [Drivers](#drivers).
 
 ESP-IDF examples already locate this library through `EXTRA_COMPONENT_DIRS`.
 With ESP-IDF activated, build from an example directory:
@@ -170,9 +205,6 @@ Your application owns bus and timer setup, scheduling, and locking.
 - **No persistence:** zero and turn history live in RAM.
 - **Software turn count** on the absolute chips: a move of half a turn or
   more between reads is miscounted.
-- **AMT102 on STM32:** the library starts, reads and stops the app's timer;
-  pins, encoder mode and input filter are the app's. The index needs the
-  app's EXTI callback to call `amt102_index_irq()`.
 - **Concurrency:** use one thread per device and bus handle, or supply a mutex.
   The HAL's own lock answers a clash with `HAL_BUSY`, which comes back as
   `-EAGAIN`.
