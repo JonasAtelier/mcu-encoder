@@ -1,1 +1,1 @@
-idf_component_register(SRCS "main.c" REQUIRES encoder driver)
+idf_component_register(SRCS "main.c")
