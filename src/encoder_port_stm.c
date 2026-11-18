@@ -11,13 +11,13 @@
 
 /*
  * The core is always built; each chip driver only under its own option. With
- * the library on and no chip picked, say so -- stm-forge compiles this file
- * only when PKG_encoder = y, so this is the CMakeLists' "ENCODER on, no
- * chip" warning on the ESP-IDF side.
+ * the library built and no chip picked, say so: this file is compiled only
+ * when the library is, so this is the CMakeLists' "no chip" warning for every
+ * build that never reads that file (stm-forge, a hand-made project).
  */
 #if !(CONFIG_ENCODER_AS5047P || CONFIG_ENCODER_AS5600 || \
       CONFIG_ENCODER_AMT102)
-#warning "encoder: no chip driver is selected; set ENCODER_<CHIP> = y under PKG_encoder = y (or -DCONFIG_ENCODER_<CHIP>=1)"
+#warning "encoder: no chip driver is selected; define CONFIG_ENCODER_<CHIP>=1 (stm-forge: ENCODER_<CHIP> = y)"
 #endif
 
 /* Milliseconds dressed as microseconds; see encoder.h for a real clock. */

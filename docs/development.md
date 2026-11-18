@@ -37,7 +37,8 @@ examples/
   stm/<chip>/               STM32 snippets: amt102, as5047p, as5600
 docs/                       the five guides; datasheet PDFs here are gitignored
 assets/                     README and chip-reference figures
-CMakeLists.txt              ESP-IDF only; stm-forge globs src/**/*.c instead
+CMakeLists.txt              ESP-IDF component; elsewhere a static library for add_subdirectory(); stm-forge globs src/**/*.c instead
+                            the static library's options are Kconfig's bool entries, found by the type line directly under each `config`
 Kconfig                     ENCODER and ENCODER_<CHIP>, for ESP-IDF and both forges' menus
 idf_component.yml           ESP-IDF component manifest
 ```
@@ -148,7 +149,8 @@ A driver is a probe, a remove, and two ops:
    `encoder_bus_detach()` and free. Remove detaches and clears them. Use
    `encoder_err()` for anything the user needs to see.
 4. Guard your chip-specific calls with `encoder->ops == &foo_ops`.
-5. Add `CONFIG_ENCODER_FOO` to the no-chip checks in `CMakeLists.txt` and
+5. Add `CONFIG_ENCODER_FOO` to the no-chip checks in `CMakeLists.txt` (its
+   ESP-IDF part; the `add_subdirectory()` part reads `Kconfig`) and
    `src/encoder_port_stm.c` and a HAL module `#error` to
    `src/encoder_priv.h`, a `src/foo/foo.c` line to `CMakeLists.txt`, a
    `config ENCODER_FOO` bool to `Kconfig`, `# ENCODER_FOO is not set` to
