@@ -85,7 +85,7 @@ To run the simulated tests on your computer, run `make -C test test` from the li
 
 ## License
 
-[MIT](LICENSE)
+© 2026 JonasAtelier, [GPL-3.0-only](LICENSE)
 
 <p align="center">
   <img src="assets/angle-concept.svg" width="760" alt="Magnet orientation maps to a 14-bit count: 0° = 0, 90° = 4096, 180° = 8192, 270° = 12288. After 16383 the count wraps to zero.">
